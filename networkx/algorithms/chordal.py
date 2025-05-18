@@ -143,13 +143,13 @@ def find_induced_nodes(G, s, t, treewidth_bound=sys.maxsize):
     The algorithm is inspired by Algorithm 4 in [1]_.
     A formal definition of induced node can also be found on that reference.
 
-    Self Loops are ignored
+    Self-loops are ignored.
 
     References
     ----------
-    .. [1] Learning Bounded Treewidth Bayesian Networks.
-       Gal Elidan, Stephen Gould; JMLR, 9(Dec):2699--2731, 2008.
-       http://jmlr.csail.mit.edu/papers/volume9/elidan08a/elidan08a.pdf
+    .. [1] Elidan, Gal and Stephen Gould. "Learning Bounded Treewidth Bayesian
+           Networks." Journal of Machine Learning Research 9, no. 91 (2008):
+           2699--731. http://jmlr.org/papers/v9/elidan08a.html.
     """
     if not is_chordal(G):
         raise nx.NetworkXError("Input graph is not chordal.")
@@ -289,9 +289,15 @@ def chordal_graph_treewidth(G):
     >>> nx.chordal_graph_treewidth(G)
     3
 
+    Notes
+    -----
+    See [1]_ for a definition of and further information on treewidth.
+
     References
     ----------
-    .. [1] https://en.wikipedia.org/wiki/Tree_decomposition#Treewidth
+    .. [1] Wikipedia contributors. "Tree decomposition." Wikipedia. Accessed
+           May 8, 2025.
+           https://en.wikipedia.org/wiki/Tree_decomposition#Treewidth
     """
     if not is_chordal(G):
         raise nx.NetworkXError("Input graph is not chordal.")
@@ -305,7 +311,7 @@ def chordal_graph_treewidth(G):
 def _is_complete_graph(G):
     """Returns True if G is a complete graph."""
     if nx.number_of_selfloops(G) > 0:
-        raise nx.NetworkXError("Self loop found in _is_complete_graph()")
+        raise nx.NetworkXError("Self-loop found in _is_complete_graph()")
     n = G.number_of_nodes()
     if n < 2:
         return True
@@ -344,7 +350,7 @@ def _find_chordality_breaker(G, s=None, treewidth_bound=sys.maxsize):
     If it does find one, it returns (u,v,w) where u,v,w are the three
     nodes that together with s are involved in the cycle.
 
-    It ignores any self loops.
+    It ignores any self-loops.
     """
     if len(G) == 0:
         raise nx.NetworkXPointlessConcept("Graph has no nodes.")
